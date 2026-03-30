@@ -46,31 +46,37 @@ function validateStoredData(data: unknown): data is StoredGameData {
   if (typeof obj.gameState !== 'string' || !['start', 'playing', 'bingo'].includes(obj.gameState)) {
     return false;
   }
-  
+
   if (!Array.isArray(obj.board) || (obj.board.length !== 0 && obj.board.length !== 25)) {
     return false;
   }
-  
-  const validSquares = obj.board.every((sq: unknown) => {
-    if (!sq || typeof sq !== 'object') return false;
-    const square = sq as Record<string, unknown>;
+
+  const validSquares = obj.board.every((square: unknown) => {
+    if (!square || typeof square !== 'object') {
+      return false;
+    }
+
+    const item = square as Record<string, unknown>;
+
     return (
-      typeof square.id === 'number' &&
-      typeof square.text === 'string' &&
-      typeof square.isMarked === 'boolean' &&
-      typeof square.isFreeSpace === 'boolean'
+      typeof item.id === 'number' &&
+      typeof item.text === 'string' &&
+      typeof item.isMarked === 'boolean' &&
+      typeof item.isFreeSpace === 'boolean'
     );
   });
-  
+
   if (!validSquares) {
     return false;
   }
-  
+
   if (obj.winningLine !== null) {
     if (typeof obj.winningLine !== 'object') {
       return false;
     }
+
     const line = obj.winningLine as Record<string, unknown>;
+
     if (
       typeof line.type !== 'string' ||
       !['row', 'column', 'diagonal'].includes(line.type) ||
@@ -80,7 +86,7 @@ function validateStoredData(data: unknown): data is StoredGameData {
       return false;
     }
   }
-  
+
   return true;
 }
 
@@ -164,25 +170,24 @@ export function useBingoGame(): BingoGameState & BingoGameActions {
   const startGame = useCallback(() => {
     setBoard(generateBoard());
     setWinningLine(null);
+    setShowBingoModal(false);
     setGameState('playing');
   }, []);
 
   const handleSquareClick = useCallback((squareId: number) => {
     setBoard((currentBoard) => {
-      const newBoard = toggleSquare(currentBoard, squareId);
-      
-      // Check for bingo after toggling
-      const bingo = checkBingo(newBoard);
+      const nextBoard = toggleSquare(currentBoard, squareId);
+      const bingo = checkBingo(nextBoard);
+
       if (bingo && !winningLine) {
-        // Schedule state updates to avoid synchronous setState in effect
         queueMicrotask(() => {
           setWinningLine(bingo);
           setGameState('bingo');
           setShowBingoModal(true);
         });
       }
-      
-      return newBoard;
+
+      return nextBoard;
     });
   }, [winningLine]);
 

@@ -1,5 +1,7 @@
 /** Domain types for the Bingo game */
 
+export type GameMode = 'bingo' | 'cards';
+
 export interface BingoSquareData {
   id: number;
   text: string;

@@ -24,7 +24,7 @@ export function GameScreen({
         <header className="frosted-panel rounded-4xl px-4 py-4 sm:px-5 lg:px-6">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex items-center justify-between gap-3">
-              <button onClick={onReset} className="secondary-button" aria-label="Return to start screen">
+              <button onClick={onReset} className="secondary-button" aria-label="Return to game selection screen">
                 Back
               </button>
               <span className="eyebrow-label">Live board</span>

@@ -167,6 +167,31 @@ select {
     backdrop-filter: blur(18px);
   }
 
+  .mode-option {
+    @apply rounded-[1.6rem] p-4 text-left transition-all duration-200;
+    background: linear-gradient(180deg, rgba(18, 26, 43, 0.82), rgba(10, 15, 28, 0.9));
+    border: 1px solid var(--color-stroke-soft);
+    box-shadow:
+      0 14px 28px rgba(1, 4, 12, 0.22),
+      0 1px 0 rgba(255, 255, 255, 0.04) inset;
+  }
+
+  .mode-option:hover,
+  .mode-option:focus-visible {
+    transform: translateY(-1px);
+    border-color: var(--color-stroke-strong);
+  }
+
+  .mode-option-active {
+    background:
+      radial-gradient(circle at top left, rgba(110, 231, 255, 0.12), rgba(110, 231, 255, 0) 30%),
+      linear-gradient(180deg, rgba(21, 32, 52, 0.94), rgba(11, 17, 30, 0.94));
+    border-color: var(--color-stroke-strong);
+    box-shadow:
+      0 18px 36px rgba(1, 4, 12, 0.28),
+      0 0 0 1px rgba(110, 231, 255, 0.08) inset;
+  }
+
   .landing-stage {
     @apply relative overflow-hidden rounded-4xl;
     min-height: 28rem;
@@ -274,6 +299,81 @@ select {
     box-shadow:
       0 24px 64px rgba(1, 4, 12, 0.5),
       0 1px 0 rgba(255, 255, 255, 0.05) inset;
+  }
+
+  .deck-stage {
+    background:
+      radial-gradient(circle at 12% 18%, rgba(110, 231, 255, 0.12), rgba(110, 231, 255, 0) 28%),
+      radial-gradient(circle at 82% 16%, rgba(79, 124, 255, 0.18), rgba(79, 124, 255, 0) 24%),
+      linear-gradient(160deg, rgba(18, 26, 43, 0.96), rgba(10, 15, 28, 0.98));
+    border: 1px solid var(--color-stroke-soft);
+    box-shadow:
+      0 28px 70px rgba(1, 4, 12, 0.44),
+      0 1px 0 rgba(255, 255, 255, 0.05) inset;
+  }
+
+  .deck-stack-button {
+    @apply relative block min-h-[17rem] rounded-[2rem] border-0 bg-transparent p-0 text-left;
+  }
+
+  .deck-stack-button:hover .deck-stack-card-front,
+  .deck-stack-button:focus-visible .deck-stack-card-front {
+    transform: translateY(-4px) rotate(-2deg);
+  }
+
+  .deck-stack-button:hover .deck-stack-card-middle,
+  .deck-stack-button:focus-visible .deck-stack-card-middle {
+    transform: translate(10px, 6px) rotate(5deg);
+  }
+
+  .deck-stack-button:hover .deck-stack-card-back,
+  .deck-stack-button:focus-visible .deck-stack-card-back {
+    transform: translate(20px, 14px) rotate(11deg);
+  }
+
+  .deck-stack-hero {
+    @apply relative min-h-[16rem] w-full max-w-[14rem];
+  }
+
+  .deck-stack-card {
+    @apply absolute inset-0 rounded-[2rem] transition-transform duration-300;
+    border: 1px solid rgba(110, 231, 255, 0.16);
+    box-shadow:
+      0 18px 40px rgba(1, 4, 12, 0.42),
+      0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  }
+
+  .deck-stack-card-back {
+    transform: translate(18px, 12px) rotate(10deg);
+    background: linear-gradient(160deg, rgba(17, 24, 40, 0.78), rgba(10, 15, 28, 0.9));
+  }
+
+  .deck-stack-card-middle {
+    transform: translate(10px, 6px) rotate(5deg);
+    background: linear-gradient(160deg, rgba(22, 31, 50, 0.84), rgba(13, 19, 34, 0.92));
+  }
+
+  .deck-stack-card-front {
+    background:
+      radial-gradient(circle at 20% 18%, rgba(110, 231, 255, 0.16), rgba(110, 231, 255, 0) 28%),
+      linear-gradient(160deg, rgba(27, 38, 61, 0.98), rgba(12, 18, 32, 0.96));
+  }
+
+  .deck-stack-core {
+    @apply flex h-full flex-col rounded-[inherit] p-5;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0)) border-box,
+      linear-gradient(160deg, rgba(14, 21, 37, 0.16), rgba(14, 21, 37, 0.02)) padding-box;
+  }
+
+  .question-card {
+    background:
+      radial-gradient(circle at top left, rgba(110, 231, 255, 0.14), rgba(110, 231, 255, 0) 26%),
+      linear-gradient(160deg, rgba(22, 31, 50, 0.96), rgba(11, 17, 30, 0.96));
+    border: 1px solid rgba(110, 231, 255, 0.14);
+    box-shadow:
+      0 24px 64px rgba(1, 4, 12, 0.4),
+      0 1px 0 rgba(255, 255, 255, 0.06) inset;
   }
 
   .board-grid {
