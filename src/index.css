@@ -150,13 +150,101 @@ select {
     border: 1px solid var(--color-stroke-soft);
   }
 
+  .landing-hero-shell {
+    background: linear-gradient(180deg, rgba(14, 21, 37, 0.86) 0%, rgba(9, 14, 25, 0.92) 100%);
+    border: 1px solid rgba(110, 231, 255, 0.12);
+    box-shadow:
+      0 32px 80px rgba(1, 4, 12, 0.46),
+      0 1px 0 rgba(255, 255, 255, 0.05) inset;
+    backdrop-filter: blur(20px);
+  }
+
+  .landing-signal {
+    @apply inline-flex items-center rounded-full px-3.5 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em];
+    background: rgba(14, 21, 37, 0.82);
+    border: 1px solid var(--color-stroke-soft);
+    color: var(--color-text-secondary);
+    backdrop-filter: blur(18px);
+  }
+
+  .landing-stage {
+    @apply relative overflow-hidden rounded-4xl;
+    min-height: 28rem;
+    background:
+      radial-gradient(circle at 18% 18%, rgba(110, 231, 255, 0.18), rgba(110, 231, 255, 0) 26%),
+      radial-gradient(circle at 84% 18%, rgba(79, 124, 255, 0.22), rgba(79, 124, 255, 0) 24%),
+      radial-gradient(circle at 50% 72%, rgba(44, 242, 161, 0.1), rgba(44, 242, 161, 0) 28%),
+      linear-gradient(145deg, rgba(15, 22, 38, 0.96), rgba(9, 14, 26, 0.98));
+    border: 1px solid rgba(110, 231, 255, 0.12);
+    box-shadow:
+      0 28px 80px rgba(1, 4, 12, 0.54),
+      0 1px 0 rgba(255, 255, 255, 0.05) inset;
+  }
+
+  @media (min-width: 1024px) {
+    .landing-stage {
+      min-height: 34rem;
+    }
+  }
+
+  .landing-stage::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 24%, transparent 76%, rgba(255, 255, 255, 0.03)),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02), transparent 20%, transparent 80%, rgba(255, 255, 255, 0.02));
+    pointer-events: none;
+  }
+
+  .landing-beam {
+    @apply absolute rounded-full;
+    filter: blur(14px);
+    opacity: 0.9;
+    animation: landing-sway 10s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .landing-orbit {
+    @apply absolute rounded-full;
+    border: 1px solid rgba(110, 231, 255, 0.12);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+    animation: landing-spin 20s linear infinite;
+    pointer-events: none;
+  }
+
+  .landing-preview-card {
+    background: linear-gradient(180deg, rgba(19, 28, 46, 0.9), rgba(12, 18, 32, 0.94));
+    border: 1px solid var(--color-stroke-soft);
+    box-shadow:
+      0 18px 40px rgba(1, 4, 12, 0.42),
+      0 1px 0 rgba(255, 255, 255, 0.06) inset;
+    backdrop-filter: blur(18px);
+  }
+
+  .landing-step {
+    background: linear-gradient(180deg, rgba(20, 29, 48, 0.88), rgba(13, 19, 34, 0.92));
+    border: 1px solid var(--color-stroke-soft);
+    box-shadow:
+      0 16px 32px rgba(1, 4, 12, 0.24),
+      0 1px 0 rgba(255, 255, 255, 0.04) inset;
+  }
+
+  .landing-value-card {
+    background: linear-gradient(180deg, rgba(18, 26, 43, 0.82), rgba(10, 15, 28, 0.9));
+    border: 1px solid var(--color-stroke-soft);
+    box-shadow:
+      0 14px 28px rgba(1, 4, 12, 0.22),
+      0 1px 0 rgba(255, 255, 255, 0.04) inset;
+  }
+
   .hero-visual {
-    @apply relative overflow-hidden rounded-[2rem] p-4 sm:p-5;
+    @apply relative overflow-hidden rounded-4xl p-4 sm:p-5;
     min-height: 20rem;
   }
 
   .hero-device {
-    @apply absolute rounded-[2rem];
+    @apply absolute rounded-4xl;
     background: linear-gradient(180deg, rgba(22, 33, 54, 0.9), rgba(13, 20, 36, 0.92));
     border: 1px solid rgba(110, 231, 255, 0.12);
     box-shadow:
@@ -180,7 +268,7 @@ select {
   }
 
   .board-frame {
-    @apply rounded-[2rem] p-3 sm:p-4;
+    @apply rounded-4xl p-3 sm:p-4;
     background: linear-gradient(180deg, rgba(18, 26, 43, 0.9), rgba(10, 15, 28, 0.94));
     border: 1px solid var(--color-stroke-soft);
     box-shadow:
@@ -271,5 +359,26 @@ select {
 
   50% {
     transform: translateY(-8px);
+  }
+}
+
+@keyframes landing-sway {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scaleX(1);
+  }
+
+  50% {
+    transform: translate3d(8px, -6px, 0) scaleX(1.04);
+  }
+}
+
+@keyframes landing-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }
