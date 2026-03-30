@@ -128,3 +128,45 @@ Define tokens in `src/index.css` via `@theme`, then use them as Tailwind classes
 ```
 
 See `.github/instructions/tailwind-4.instructions.md` for full Tailwind v4 patterns.
+
+## Design Guide
+
+Use the existing visual system before introducing new styles. This app now follows a premium dark UI with Apple-style spacing and layout discipline.
+
+### Visual Direction
+
+- Prefer deep navy and graphite surfaces over pure black or flat gray backgrounds.
+- Use vibrant accents sparingly: cyan for primary action, indigo for active states, electric green for success or completed bingo states.
+- Keep layouts calm and spacious. Favor generous padding, strong alignment, and clear hierarchy over dense ornamentation.
+- Preserve the current premium tone: polished, restrained, high-contrast, and modern rather than playful or loud.
+
+### Reusable Surface Classes
+
+When possible, compose from the shared classes in `src/index.css` instead of inventing one-off panel styles:
+
+- `app-shell` for full-screen page backgrounds
+- `frosted-panel` for header and elevated glass surfaces
+- `product-panel` for feature cards and secondary content blocks
+- `primary-button` and `secondary-button` for core actions
+- `status-banner` and `status-banner-success` for neutral and success messaging
+- `board-frame`, `square-surface`, `square-surface-active`, `square-surface-winning`, and `square-surface-free` for bingo board states
+
+### Color And State Rules
+
+- Do not hardcode raw color utilities in JSX for new UI unless there is a strong reason; prefer semantic tokens and shared classes.
+- Reserve the brightest accent treatment for the primary CTA and high-signal interaction moments.
+- Winning states must remain visually distinct from merely marked states.
+- Free-space styling should stay quieter than winning or active states while remaining clearly identifiable.
+
+### Typography And Spacing
+
+- Stay on the existing San Francisco-style system font stack defined in `src/index.css`.
+- Use tight tracking only for large display headlines and uppercase labels.
+- Prefer short, product-like copy blocks over long explanatory paragraphs.
+- On mobile, preserve breathing room around cards, headers, and the board; do not compress spacing aggressively to fit more content.
+
+### Motion And Effects
+
+- Keep animation restrained and purposeful.
+- Favor subtle blur, gradients, and depth over heavy glow or constant motion.
+- If a celebratory or active state needs emphasis, use a single clear highlight rather than stacking multiple visual effects.
